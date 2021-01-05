@@ -19,6 +19,10 @@ p {
   font-weight: 300;
 }
 
+span.docks {
+  font-family: FugazOne;
+}
+
 .container {
   display: grid;
   grid-template: auto 1fr auto/repeat(12, 1fr);
@@ -33,10 +37,9 @@ p {
   position: fixed;
   width: 2em;
   height: 2em;
-  padding: 4px;
   transition: 0.25s;
   z-index: 115;
-  margin: 1em 2em;
+  margin: 0.7em 2em;
   right: 0;
 }
 @media (min-width: 900px) {
@@ -107,6 +110,7 @@ p {
   .container .header .menu-wrap {
     margin-right: 0;
     background-color: unset;
+    position: absolute;
   }
 }
 .container .header .menu-wrap li > a {
@@ -116,10 +120,13 @@ p {
   margin: 0;
   box-shadow: 4px 0px 13px #181E19;
 }
+.container .header .menu-show li a {
+  color: #EDEAE9 !important;
+}
 .container .header #navigation {
-  background: #6A9F9E;
+  background: #EDEAE9;
   grid-column: 1/-1;
-  padding: 1.2em 2em;
+  padding: 0.5em 2em;
 }
 .container .header #navigation ul {
   grid-column: 1/-1;
@@ -127,13 +134,13 @@ p {
   display: flex;
   flex-flow: column nowrap;
   font-size: 1rem;
-  padding: 3em 2rem;
+  padding: 1em;
   width: 200px;
 }
 @media (min-width: 900px) {
   .container .header #navigation ul {
     flex-flow: row nowrap;
-    padding: 1.6em;
+    padding: 1em 2em 1em 2em;
     height: auto;
     width: auto;
   }
@@ -142,14 +149,9 @@ p {
   display: inline-block;
   margin-bottom: 1em;
 }
-@media (min-width: 900px) {
-  .container .header #navigation li {
-    margin: 0 1em 0 0;
-  }
-}
 .container .header #navigation li a {
   text-decoration: none;
-  color: #f8f5f4;
+  color: #456169;
   font-family: Roboto;
   font-weight: 300;
 }
@@ -159,57 +161,84 @@ p {
 .container .header #navigation span#accueil > a {
   font-family: FugazOne;
   text-decoration: none;
-  color: #f8f5f4;
+  color: #456169;
   font-size: 1.5em;
 }
 @media (min-width: 900px) {
   .container .header #navigation span#accueil > a {
-    padding: 1em 0 0 5.3em;
+    padding: 1em 0 0 0em;
   }
 }
 @media (min-width: 1200px) {
   .container .header #navigation span#accueil > a {
-    padding: 1em 0 0 12em;
+    padding: 1em 0 0 0em;
   }
 }
-.container .presentation--titre {
-  display: grid;
-  grid-template: repeat(1, 1fr)/repeat(3, 1fr);
+.container .presentation--titre:before {
+  content: "";
+  background-image: url("/warehouse.1f5fcd94.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100vh;
+  display: block;
+  opacity: 0.8;
 }
-.container .presentation--titre #main--title {
-  background: transparent;
-  grid-column: 1/-1;
-  height: 3em;
-  margin: 0;
-  padding: 1em 0 0 1em;
+.container .presentation--titre .presentation--contenu {
   position: absolute;
+  top: 50%;
+  right: 50%;
+  transform: translate(50%, -50%);
+}
+.container .presentation--titre .presentation--contenu #main--title {
+  font-size: 4em;
+  text-align: center;
+  margin: 0;
   color: #EDEAE9;
 }
-@media (min-width: 900px) {
-  .container .presentation--titre #main--title {
-    padding: 1em 0 0 5em;
-  }
+.container .presentation--titre .presentation--contenu #main--title span.docks {
+  font-size: 0.95em;
+  color: #EDEAE9;
 }
-@media (min-width: 1200px) {
-  .container .presentation--titre #main--title {
-    padding: 1em 0 0 10em;
-  }
-}
-.container .presentation--titre p {
-  background: #456169;
-  margin: auto 0;
-  padding: 5em 2em 2em 2em;
-  grid-column: 1/4;
+.container .presentation--titre .presentation--contenu p {
   color: #f8f5f4;
+  text-align: center;
+  margin: 0;
+  font-size: 1.5em;
+  background: #181E1980;
+  padding: 0.2em 0.5em;
 }
-@media (min-width: 900px) {
-  .container .presentation--titre p {
-    padding: 5em 2em 2em 10em;
+.container #scroll-animation {
+  position: absolute;
+  bottom: 5vh;
+  right: 50%;
+}
+.container #scroll-animation::before {
+  content: "";
+  width: 2em;
+  height: 2em;
+  display: block;
+  border: solid #EDEAE9 0.1em;
+  border-radius: 0.5em;
+}
+.container #scroll-animation::after {
+  content: "";
+  width: 0.3em;
+  height: 0.3em;
+  display: block;
+  background: #181E19;
+  border-radius: 50%;
+  position: absolute;
+  right: 50%;
+  animation-duration: 3s;
+  animation-name: scrolling;
+  animation-iteration-count: infinite;
+}
+@keyframes scrolling {
+  from {
+    transform: translate(50%, -2em);
   }
-}
-@media (min-width: 1200px) {
-  .container .presentation--titre p {
-    padding: 5em 2em 2em 20em;
+  to {
+    transform: translate(50%, -0.5em);
   }
 }
 .container .container--photos {
@@ -222,17 +251,17 @@ p {
 .container .presentation--docks {
   grid-column: 1/-1;
   grid-row: 2/3;
-  padding: 2em 2em;
+  padding: 6em 2em;
   background: #EDEAE9;
 }
 @media (min-width: 900px) {
   .container .presentation--docks {
-    padding: 2em 10em;
+    padding: 6em 10em;
   }
 }
 @media (min-width: 1200px) {
   .container .presentation--docks {
-    padding: 2em 20em;
+    padding: 6em 20em;
   }
 }
 .container .presentation--docks .citation {

@@ -53,6 +53,10 @@ p{
     font-weight: 300;
 }
 
+span.docks {
+    font-family: FugazOne;
+}
+
 .container {
     display: grid;
     grid-template: auto 1fr auto/repeat(12, 1fr);
@@ -70,10 +74,9 @@ p{
         position: fixed;
         width: 2em;
         height: 2em;
-        padding: 4px;
         transition: 0.25s;
         z-index: 115;
-        margin: 1em 2em;
+        margin: .7em 2em;
         right: 0;
 
         @include for-size(tablet-landscape-up){
@@ -145,6 +148,7 @@ p{
         @include for-size(tablet-landscape-up){
             margin-right: 0;
             background-color: unset;
+            position: absolute;
         }
 
         li > a {
@@ -155,12 +159,16 @@ p{
     .menu-show {
         margin: 0;
         box-shadow: 4px 0px 13px $dark_shades;
+
+        li a {
+            color: $light_shades !important;
+        }
     }
         
         #navigation{
-            background: $light_accent;
+            background: $light_shades;
             grid-column: 1 / -1;
-            padding: 1.2em 2em;
+            padding: .5em 2em;
             
             ul {
                 grid-column: 1/-1;
@@ -168,12 +176,12 @@ p{
                 display: flex;
                 flex-flow: column nowrap;
                 font-size: 1rem;
-                padding: 3em 2rem;
+                padding: 1em;
                 width: 200px;
 
                 @include for-size(tablet-landscape-up){
                     flex-flow: row nowrap;
-                    padding: 1.6em;
+                    padding: 1em 2em 1em 2em;
                     height: auto;
                     width: auto;
                 }
@@ -184,12 +192,12 @@ p{
                 margin-bottom: 1em;
 
                 @include for-size(tablet-landscape-up){
-                    margin: 0 1em 0 0;
+                    // margin: 0 1em 0 0;
                 }
 
                 a{
                     text-decoration: none;
-                    color: $super_light;
+                    color: $dark_accent;
                     font-family: $font-main;
                     font-weight: 300;
                     
@@ -204,62 +212,120 @@ p{
             span#accueil > a{
                 font-family: FugazOne;
                 text-decoration: none;
-                color: $super_light;
+                color: $dark_accent;
                 font-size: 1.5em;
 
                 @include for-size(tablet-landscape-up){
-                    padding: 1em 0 0 5.3em;
+                    padding: 1em 0 0 0em;
                 }
                 
                 @include for-size(desktop-up){
-                    padding: 1em 0 0 12em;
+                    padding: 1em 0 0 0em;
                 }
             }
         }
     }
 
-    .presentation--titre{
+    .presentation--titre {
 
-        display: grid;
-        grid-template: repeat(1, 1fr) / repeat(3, 1fr);
-
-        #main--title{
-            background: transparent;
-            grid-column: 1 / -1;
-            height: 3em;
-            margin: 0;
-            padding: 1em 0 0 1em;
-            position: absolute;
-            color: $light_shades;
-
-            @include for-size(tablet-landscape-up){
-                padding: 1em 0 0 5em;
-            }
-            
-            @include for-size(desktop-up){
-                padding: 1em 0 0 10em;
-            }
-
+        &:before {
+            content: "";
+            background-image: url("/images/warehouse.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100vh;
+            display: block;
+            opacity: .8;
         }
 
-        p {
-            background: $dark_accent;
-            margin: auto 0;
-            padding: 5em 2em 2em 2em;
-            grid-column: 1 / 4;
-            color: $super_light;
+        .presentation--contenu {
+            position: absolute;
+            top: 50%;
+            right: 50%;
+            transform: translate(50%, -50%);
 
-            @include for-size(small-phone-upper-boundary){
-                grid-column: 1 / 4;
+            #main--title{
+                font-size: 4em;
+                text-align: center;
+                margin: 0;
+                color: $light_shades;
+
+                @include for-size(tablet-landscape-up){
+                    
+                }
+                
+                @include for-size(desktop-up){
+                   
+                }
+
+                span.docks {
+                    font-size: .95em;
+                    color: $light_shades;
+                }
+
             }
 
-            @include for-size(tablet-landscape-up){
-                padding: 5em 2em 2em 10em;
+            p {
+                color: $super_light;
+                text-align: center;
+                margin: 0;
+                font-size: 1.5em;
+                background: #181E1980;
+                padding: .2em .5em;
+
+                @include for-size(small-phone-upper-boundary){
+                    
+                }
+
+                @include for-size(tablet-landscape-up){
+                    
+                }
+                
+                @include for-size(desktop-up){
+                   
+                }
             }
-            
-            @include for-size(desktop-up){
-                padding: 5em 2em 2em 20em;
-            }
+        }
+        
+    }
+
+    #scroll-animation {
+        position: absolute;
+        bottom: 5vh;
+        right: 50%;
+    }
+
+    #scroll-animation::before {
+        content: "";
+        width: 2em;
+        height: 2em;
+        display: block;
+        border: solid $light_shades .1em;
+        border-radius: .5em;
+    }
+
+    #scroll-animation::after {
+        content: "";
+        width: .3em;
+        height: .3em;
+        display: block;
+        background: $dark_shades;
+        border-radius: 50%;
+        position: absolute;
+        // transform: translate(50%, -3em);
+        right: 50%;
+        animation-duration: 3s;
+        animation-name: scrolling;
+        animation-iteration-count: infinite;
+    }
+
+    @keyframes scrolling {
+        from {
+            transform: translate(50%, -2em);
+        }
+        
+        to {
+            transform: translate(50%, -.5em);
         }
     }
 
@@ -267,7 +333,7 @@ p{
         height: 10em;
         background: $super_light;
         
-        p{
+        p {
             text-align: center;
 
         }
@@ -276,15 +342,15 @@ p{
     .presentation--docks{
         grid-column: 1 / -1;
         grid-row: 2 / 3;
-        padding: 2em $padding;
+        padding: 6em $padding;
         background: $light_shades;
 
         @include for-size(tablet-landscape-up){
-            padding: 2em 10em;
+            padding: 6em 10em;
         }
 
         @include for-size(desktop-up){
-            padding: 2em 20em;
+            padding: 6em 20em;
         }
 
         .citation{

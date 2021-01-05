@@ -189,7 +189,7 @@ var reloadCSS = require('_css_loader');
 
 module.hot.dispose(reloadCSS);
 module.hot.accept(reloadCSS);
-},{"./fonts/FugazOne-Regular.ttf":[["FugazOne-Regular.f81ec6c7.ttf","styles/fonts/FugazOne-Regular.ttf"],"styles/fonts/FugazOne-Regular.ttf"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
+},{"./fonts/FugazOne-Regular.ttf":[["FugazOne-Regular.f81ec6c7.ttf","styles/fonts/FugazOne-Regular.ttf"],"styles/fonts/FugazOne-Regular.ttf"],"/mnt/c/Users/N/code/docks52b/src/images/warehouse.jpg":[["warehouse.1f5fcd94.jpg","images/warehouse.jpg"],"images/warehouse.jpg"],"_css_loader":"../node_modules/parcel-bundler/src/builtins/css-loader.js"}],"index.js":[function(require,module,exports) {
 "use strict";
 
 require("./styles/main.scss");
@@ -231,7 +231,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1255" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "1650" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
@@ -262,8 +262,9 @@ if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
         assetsToAccept.forEach(function (v) {
           hmrAcceptRun(v[0], v[1]);
         });
-      } else {
-        window.location.reload();
+      } else if (location.reload) {
+        // `location` global exists in a web worker context but lacks `.reload()` function.
+        location.reload();
       }
     }
 
